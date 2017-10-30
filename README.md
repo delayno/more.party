@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+## Delay No More!
+
+### 我不要再赌了！
 
 You can use the [editor on GitHub](https://github.com/delayno/more.party/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
