@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,85 +49,48 @@
 	<div class="container">
 		
 		<h3 class="text-center" style="color: #007bff; margin-bottom: 1em">社长语录</h3>
-		<div class="row">
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">捷波朗福建妹： 豪 豪 （第二声）<br> 在福建工作也不错啊</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">刚吃了个面舒服 天冷吃面爽</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">这次真下定决心不搞了。不然死路一条</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">吵 证明你还活着</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">开玩笑 不打点打点 这么大的水鱼</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">他竟然说你用什么英文啊，他都不懂写不懂看</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">现在来健身房都没有小梅可以偷瞄了</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-8">
-				<blockquote class="blockquote">
-					<p class="mb-0">其实闲了去河边看看钓鱼也挺好的，虽然已经没有鱼竿感觉不到钓到鱼的快感，但是我们赌徒其实就是鱼儿，庄家就是钓鱼人，我们贪图吊钩上那一点点诱饵，却把自己的小命交到庄家手中。</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">收拾收拾，重新出发</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
-			<div class="col-sm-4">
-				<blockquote class="blockquote">
-					<p class="mb-0">死路一条</p>
-					<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>
-				</blockquote>
-			</div>
+		<div class="row" id="gists">
+			<p class="text-center" style="width: 100%;color: #ccc;">正在读取……</p>
 		</div><!-- .row -->
 		<p><hr>&copy; 2017 天真公司 一无所有 No rights reserved</p>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 	<script>
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyD4ZnBArXv6izb9oB3yUFA0hQXuSs31Qyc",
-	    authDomain: "delaynomore-proj.firebaseapp.com",
-	    databaseURL: "https://delaynomore-proj.firebaseio.com",
-	    projectId: "delaynomore-proj",
-	    storageBucket: "delaynomore-proj.appspot.com",
-	    messagingSenderId: "182033941363"
-	  };
-	  firebase.initializeApp(config);
+		(function ($) {
+			var GIST_ENDPOINT = 'https://api.github.com/users/delayno/gists';
+
+			$.get(GIST_ENDPOINT, processGists, 'json');
+
+			function processGists(json) {
+				var $gists = $('#gists');
+				$gists.empty();
+				for (var i = 0; i < json.length; i ++) {
+					var gist = json[i];
+
+					$gists.append(
+						'<div class="col-sm-4 hidden">'
+						+ '	<blockquote class="blockquote">'
+						+ '		<p class="mb-0" id="gist-' + i + '"></p>'
+						+ '		<footer class="blockquote-footer"><cite title="Source Title">wuminglang</cite></footer>'
+						+ '	</blockquote>'
+						+ '</div>'
+					);
+
+					var file;
+
+					for (var key in gist.files) {
+						file = gist.files[key].raw_url;
+					}
+
+					$('#gist-' + i).load(file, function () {
+						$(this).closest('col-sm-4').show();
+					});
+				}
+			}
+
+		})(jQuery);
 	</script>
 </body>
 </html>
