@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+	<style>
+		.blockquote {
+		    padding-left: 1em;
+		    border: 1px solid #ddd;
+		    padding: 1em;
+		    background: #fcfcfc;
+		}
+		.blockquote-footer {
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="/"><img src="logo.png?v=2" alt="Delay no more!"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		      	</button>
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="/">首页</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://nickytoh.net/downloads/pc-version.zip">下载 PC 版</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://nickytoh.net/downloads/android-version.apk">下载 Android 版</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://fuckcloud.delaynomore.party">法客云</a></li>
+					<li class="nav-item"><a class="nav-link" href="/about.html">关于我们</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid" style="background-size: cover; background-position: center; background-image: url(bicycle_sea.jpg);">
+		<div class="container">
+			<div class="jumbotron" style="background: none;">
+				<h2 style="color: #fff; margin-bottom: 1em;">赌海无涯，回头是岸！</h2>
+				<a href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=%E6%88%92%E8%B5%8C" class="btn btn-primary" rel="noreferrer">摆渡戒赌吧</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		
+		<h3 class="text-center" style="color: #007bff; margin-bottom: 1em">贴文</h3>
+		<div class="row" id="posts">
+			<p class="text-center" style="width: 100%;color: #ccc;">正在读取……</p>
+		</div><!-- .row -->
+		<p><hr>&copy; 2017 天真公司 一无所有 No rights reserved</p>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script>
+		(function ($) {
+			var TELEGRAPH_ENDPOINT = 'https://api.telegra.ph/getPageList?access_token=2cd262d43ea973fa64b6fcc32f0da9c450648857c7164877ba25bcceee83&limit=10';
+
+			$.get(TELEGRAPH_ENDPOINT, processPosts, 'json');
+
+			function processPosts(json) {
+				var $gists = $('#posts');
+				$gists.empty();
+				for (var i = 0; i < json.result.pages.length; i ++) {
+					var gist = json.result.pages[i];
+
+					$gists.append(
+						'<a href="' + gist.url + '" target="_blank">' + gist.title + '</a>'
+					);
+
+				}
+			}
+
+		})(jQuery);
+	</script>
+</body>
+</html>
