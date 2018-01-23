@@ -82,7 +82,7 @@
 				
 				$.get('https://api.telegra.ph/getAccountInfo?access_token=2cd262d43ea973fa64b6fcc32f0da9c450648857c7164877ba25bcceee83&fields=[%22auth_url%22]',
 					function (json) {
-						window.open(json.result.auth_url);
+						location.href = json.result.auth_url;
 					},
 				      	'json'
 				     );
