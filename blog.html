@@ -52,7 +52,7 @@
 		<div id="posts">
 			<p class="text-center" style="width: 100%;color: #ccc;">正在读取……</p>
 		</div><!-- .row -->
-		<div><a href="https://nickytoh.net/login/shezhangboke" target="_blank">发布新文章</a></div>
+		<div><a href="#" target="_blank" class="btn btn-danger btn-post-new">发布新文章</a></div>
 		<p><hr>&copy; 2017 天真公司 一无所有 No rights reserved</p>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -76,6 +76,17 @@
 
 				}
 			}
+			
+			$('.btn-post-new').on('click', function(e) {
+				e.preventDefault();
+				
+				$.get('https://api.telegra.ph/getAccountInfo?access_token=2cd262d43ea973fa64b6fcc32f0da9c450648857c7164877ba25bcceee83&fields=[%22auth_url%22]',
+					function (json) {
+						window.open(json.result.auth_url);
+					},
+				      	json
+				     );
+			});
 
 		})(jQuery);
 	</script>
