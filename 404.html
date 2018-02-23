@@ -1,1 +1,14 @@
-Oops...
+<script src="https://beta.delaynomore.party/public/ghost-sdk.min.js?v=7a20b2a47f"></script>
+<script type="text/javascript">
+  ghost.init({
+    clientId: "ghost-frontend",
+    clientSecret: "63483719f980"
+  });
+</script>
+<script>
+  (function () {
+    var path = window.location.path;
+    var segments = path.split('/')
+    console.log(path, segments);
+  )();
+</script>
