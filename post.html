@@ -84,10 +84,11 @@
 					var publishDate = new Date(post.published_at);
 					$posts.append(
 						'<div class="item">'
-						+	'<h3>' + post.title + '</h3>'
+						+	'<div class="featured-image"><img src="https://beta.delaynomore.party' + post.feature_image +'"></div>'
 						+	'<span class="publish_date">' + publishDate.getFullYear() + '-' + (publishDate.getMonth() + 1) + '-' + publishDate.getDate() + '</span>'
+						+	'<h3>' + post.title + '</h3>'
 						// +	'<p class="excerpt">' + post.custom_excerpt +'</p>'
-						+	'<div class="body">' + post.html.replace(/src="\/content\/images/g, 'src="https://adamwoo.ghost.io/content/images') +'</div>'
+						+	'<div class="body">' + post.html.replace(/src="\/content\/images/g, 'src="https://beta.delaynomore.party/content/images') +'</div>'
 						+ '</div>'
 					);
 				}
