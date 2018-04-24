@@ -49,8 +49,7 @@ footer {
 #post .item h3,
 #post .item .publish_date,
 #post .item .body {
-	margin-left: 120px;
-	margin-right: 120px;
+	max-width: 720px;
 }
 
 /**/
