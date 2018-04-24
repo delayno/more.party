@@ -19,6 +19,9 @@
 		}
 		#posts .featured-image img {
 			width: 100%;
+		}
+		#posts .item .body img {
+			max-width: 100%;
 		}			
 		#posts .item {
 			border-bottom: 1px solid #eee;
@@ -99,7 +102,7 @@
 					var publishDate = new Date(post.published_at);
 					$posts.append(
 						'<div class="item">'
-						+	'<div class="featured-image"><img src="https://beta.delaynomore.party' + post.feature_image +'"></div>'
+						+	(post.feature_image ? '<div class="featured-image"><img src="https://beta.delaynomore.party' + post.feature_image +'"></div>' : '')
 						+	'<span class="publish_date">' + publishDate.getFullYear() + '-' + (publishDate.getMonth() + 1) + '-' + publishDate.getDate() + '</span>'
 						+	'<h3>' + post.title + '</h3>'
 						// +	'<p class="excerpt">' + post.custom_excerpt +'</p>'
