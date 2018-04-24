@@ -80,7 +80,7 @@
 					var post = json.posts[i];
 					var publishDate = new Date(post.published_at);
 					$posts.append(
-						'<div>'
+						'<div class="blockquote">'
 						+	'<h3><a href="?id=' + post.id + '" class="title">' + post.title + '</a></h3>'
 						+	'<span class="publish_date">' + publishDate.getFullYear() + '-' + (publishDate.getMonth() + 1) + '-' + publishDate.getDate() + '</span>'
 						// +	'<p class="excerpt">' + post.custom_excerpt +'</p>'
