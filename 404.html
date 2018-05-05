@@ -1,31 +1,7 @@
 <html>
   <head></head>
   <body>
-    <article></article>
+    <article>404</article>
   </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://beta.delaynomore.party/public/ghost-sdk.min.js?v=7a20b2a47f"></script>
-<script type="text/javascript">
-  ghost.init({
-    clientId: "ghost-frontend",
-    clientSecret: "63483719f980"
-  });
-</script>
-<script>
-  (function () {
-    var path = window.location.pathname.toString().substring(1);
-    var segments = path.split('/')
-    if (segments.length == 2 && segments[0] == 'article') {
-      loadArticle(segments[1]);
-    }
-    
-    function loadArticle(slug) {
-      $.get(ghost.url.api('posts/slug/' + slug)).done(function (data){
-        $('article').html(data.posts);
-      }).fail(function (err){
-        $('article').html(err);
-      });
-    }
-  })();
 </script>
